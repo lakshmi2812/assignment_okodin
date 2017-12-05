@@ -12,6 +12,17 @@ router.get("/", function(req, res, next) {
   res.send("respond with a resource");
 });
 
+router.get("/search", function(req, res, next){
+  res.render("search");
+});
+
+router.post("/search", function(req, res, next){
+  let gender = req.body.gender;
+  Profile.findAll({
+    where: { gender: gender }
+  }).then(result=>{res.render("search", {result:result})});
+});
+
 router.get("/:id", function(req, res, next) {
   User.findById(req.params.id, {
     include: [{model: Profile}]
@@ -22,10 +33,5 @@ router.get("/:id", function(req, res, next) {
     .catch(e => res.status(500).send(e.stack));
 });
 
-router.get("/search", function(req, res, next){
-  res.render("search");
-});
-
-router.get("/search", function(req, res, next) {});
 
 module.exports = router;

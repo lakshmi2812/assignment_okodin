@@ -1,24 +1,57 @@
 <h2>New User</h2>
 
+<!-- search  -->
+
 <div class="container">
-</div>
-  </div>
   <form class="form-inline" action = '/users/search' method = "post">
-  <div class="form-check">
-  <label class="form-check-label">
-    <input class="form-check-input" type="radio" name="gender" id="exampleRadios1" value="male" >
-    Male
-  </label>
-</div>
-<div class="form-check">
-  <label class="form-check-label">
-    <input class="form-check-input" type="radio" name="gender" id="exampleRadios2" value="female">
-    Female
-  </label>
-</div>
-</div>
-<input type = "submit" value = "submit">
+    <div class="form-group">
+      <label class="mr-sm-2" for="inlineFormCustomSelectPref1">Gender</label>
+      <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="gender"id="inlineFormCustomSelectPref1">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="mr-sm-2" for="inlineFormCustomSelectPref2">Age</label>
+      <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="age" id="inlineFormCustomSelectPref2">
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="mr-sm-2" for="inlineFormCustomSelectPref3">City</label>
+      <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="city" id="inlineFormCustomSelectPref3">
+        <option value="somecity">somecity</option>
+        <option value="nocity">nocity</option>
+      </select>
+    </div>
+    
+    <input type = "submit" value = "submit">
   </form>
 </div>
 
-{{result}}
+<!--  search results -->
+
+<div class="container-fluid">
+  <div class="row">
+    {{#each profiles as |profile|}}
+      <div class="col">
+        <img src="/images/viking_girl.jpg" >
+        <p>{{profile.user.username}}</p>
+        <p>{{profile.user.email}}</p>
+        <p>{{profile.age}}</p>
+        <p>{{profile.city}}</p>
+      </div>
+    {{/each}}
+  </div>
+</div>

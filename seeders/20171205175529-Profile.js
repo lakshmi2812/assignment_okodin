@@ -17,7 +17,7 @@ module.exports = {
         userId: i + 1,
         pets: `dogsnamed${i}`,
         education: `somestring${i}`,
-        age: i,
+        age: i + 20,
         city: "somecity",
         distance: i,
         talents: `somestring${i}`,

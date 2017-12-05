@@ -12,15 +12,26 @@ router.get("/", function(req, res, next) {
   res.send("respond with a resource");
 });
 
-router.get("/search", function(req, res, next){
-  res.render("search");
+router.get("/search", function(req, res, next) {
+  res.render("search", {profiles: []});
 });
 
-router.post("/search", function(req, res, next){
-  let gender = req.body.gender;
+router.post("/search", function(req, res, next) {
+  console.log("post" + req.body.age + req.body.gender + req.body.city);
+
   Profile.findAll({
-    where: { gender: gender }
-  }).then(result=>{res.render("search", {result:result})});
+    where: {
+      $and: [
+        {age: req.body.age},
+        {gender: req.body.gender},
+        {city: req.body.city}
+      ]
+    },
+    include: [{model: User}]
+  }).then(result => {
+    console.log("this is the profiles/result: " + result);
+    res.render("search", {profiles: result});
+  });
 });
 
 router.get("/:id", function(req, res, next) {
@@ -32,6 +43,5 @@ router.get("/:id", function(req, res, next) {
     })
     .catch(e => res.status(500).send(e.stack));
 });
-
 
 module.exports = router;

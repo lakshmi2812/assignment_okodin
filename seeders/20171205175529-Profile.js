@@ -12,15 +12,28 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-    var users = [];
+    var profiles = [];
     for (let i = 0; i < 10; i++) {
-      users.push({
-        profileId: i + 1,
-        username: `foobar${i}`,
-        email: `foobar${i}@gmail.com`
+      profiles.push({
+        userId: i + 1,
+        pets: `dogsnamed${i}`,
+        education: `somestring${i}`,
+        age: i,
+        city: "somecity",
+        distance: i,
+        talents: `somestring${i}`,
+        favorites: `somestring${i}`,
+        kids: true,
+        whyyoushouldmessageme: `somestring${i}`,
+        gender: `female`,
+        martialstatus: `somestring${i}`,
+        bodytype: `somestring${i}`,
+        heightfeet: i,
+        heightinches: i,
+        occupation: `somestring${i}`
       });
     }
-    return queryInterface.bulkInsert("Users", users);
+    return queryInterface.bulkInsert("Profiles", profiles);
   },
 
   down: (queryInterface, Sequelize) => {
